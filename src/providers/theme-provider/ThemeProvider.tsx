@@ -8,19 +8,20 @@ import {
   ReactNode,
   SetStateAction,
   createContext,
+  useCallback,
   useMemo,
   useState,
 } from "react";
-import { StyleMode } from "../types";
-import ThemeOptionsGenerator from "./theme-options";
+import { StyleMode } from "../../style/types";
+import ThemeOptionsGenerator from "../../style/theming/theme-options";
 
 interface ColorModeContextData {
   mode: StyleMode;
-  setMode: Dispatch<SetStateAction<StyleMode>>;
+  toggleMode: () => void;
 }
 const colorModeContext = createContext<ColorModeContextData>({
   mode: "dark",
-  setMode: () => {},
+  toggleMode: () => {},
 });
 
 const ThemeProviderWrapper = ({ children }: { children: ReactNode }) => {
@@ -32,6 +33,9 @@ const ThemeProviderWrapper = ({ children }: { children: ReactNode }) => {
     prefersDarkMode ? "dark" : "light"
   );
 
+  const toggleMode = useCallback(() => {
+    setMode(mode === 'dark' ? 'light' : 'dark')
+  }, [mode])
   // create theme using options generator
   const theme: Theme = useMemo(() => {
     let themWithNonResponsiveFont = createTheme(ThemeOptionsGenerator(mode));
@@ -42,9 +46,9 @@ const ThemeProviderWrapper = ({ children }: { children: ReactNode }) => {
   const modeCtxData: ColorModeContextData = useMemo(() => {
     return {
       mode,
-      setMode,
+      toggleMode,
     };
-  }, [mode]);
+  }, [mode, toggleMode]);
 
   return (
     <colorModeContext.Provider value={modeCtxData}>

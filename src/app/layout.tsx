@@ -1,5 +1,5 @@
 // import "./globals.css";
-import ThemeProviderWrapper from "@/style/theming/ThemeProvider";
+import ThemeProviderWrapper from "@/providers/theme-provider/ThemeProvider";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Viewport } from "next";
 export const viewport: Viewport = {

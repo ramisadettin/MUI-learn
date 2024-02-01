@@ -13,11 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <AppRouterCacheProvider>
-          <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
-        </AppRouterCacheProvider>
-      </body>
+      <ThemeProviderWrapper>
+        <body>
+          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+        </body>
+      </ThemeProviderWrapper>
     </html>
   );
 }

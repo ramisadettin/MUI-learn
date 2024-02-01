@@ -1,6 +1,6 @@
 "use client";
-import { Theme, createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from '@mui/material/CssBaseline';
+import { Theme, createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
@@ -12,7 +12,7 @@ import {
   useState,
 } from "react";
 import { StyleMode } from "../types";
-import { darkThemeOptions, lightThemeOptions } from "./theme-options";
+import ThemeOptionsGenerator from "./theme-options";
 
 interface ColorModeContextData {
   mode: StyleMode;
@@ -32,10 +32,13 @@ const ThemeProviderWrapper = ({ children }: { children: ReactNode }) => {
     prefersDarkMode ? "dark" : "light"
   );
 
+  // create theme using options generator
   const theme: Theme = useMemo(() => {
-    return createTheme(mode === "dark" ? darkThemeOptions : lightThemeOptions);
+    let themWithNonResponsiveFont = createTheme(ThemeOptionsGenerator(mode));
+    return responsiveFontSizes(themWithNonResponsiveFont)
   }, [mode]);
 
+  // create the colormode and setter as context data
   const modeCtxData: ColorModeContextData = useMemo(() => {
     return {
       mode,
@@ -51,3 +54,4 @@ const ThemeProviderWrapper = ({ children }: { children: ReactNode }) => {
   );
 };
 export default ThemeProviderWrapper;
+export { colorModeContext };

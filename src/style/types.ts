@@ -1,0 +1,1 @@
+export type StyleMode = 'light' | 'dark'

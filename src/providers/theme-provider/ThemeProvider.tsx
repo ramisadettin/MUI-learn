@@ -2,11 +2,8 @@
 import { Theme, createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import useMediaQuery from "@mui/material/useMediaQuery";
 import {
-  Dispatch,
   ReactNode,
-  SetStateAction,
   createContext,
   useCallback,
   useMemo,
@@ -25,13 +22,9 @@ const colorModeContext = createContext<ColorModeContextData>({
 });
 
 const ThemeProviderWrapper = ({ children }: { children: ReactNode }) => {
-  // the os or browser default mode
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   // set the default mode based
-  const [mode, setMode] = useState<StyleMode>(
-    prefersDarkMode ? "dark" : "light"
-  );
+  const [mode, setMode] = useState<StyleMode>('light');
 
   const toggleMode = useCallback(() => {
     setMode(mode === 'dark' ? 'light' : 'dark')

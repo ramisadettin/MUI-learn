@@ -1,20 +1,18 @@
-"use client";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import { ReactNode } from "react";
+import ThemedWrapper from "../themed-wrapper/ThemedWrapper";
 
 const DashboardContentWrapper = ({ children }: { children: ReactNode }) => {
-  const theme = useTheme();
   return (
-    <Box
+    <ThemedWrapper
+      type="box"
+      backgroundType="default"
       sx={{
         minWidth: "100vw",
         minHeight: "100vh",
-        backgroundColor: theme.palette.background.default,
       }}
     >
       {children}
-    </Box>
+    </ThemedWrapper>
   );
 };
 export default DashboardContentWrapper;

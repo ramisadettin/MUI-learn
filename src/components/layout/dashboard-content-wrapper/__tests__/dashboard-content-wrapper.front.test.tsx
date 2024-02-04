@@ -15,7 +15,10 @@ var boxCorrectProps = {
 
 const childComponentMock = <div data-testid={wrappedChildrenTestId}></div>;
 const boxMockPropsCaller = jest.fn();
-
+jest.mock("../../top-nav/TopNav.tsx", () => ({
+  __esModule: true,
+  default: () => <div></div>
+}))
 jest.mock("@mui/material/Box", () => ({
   __esModule: true,
   default: ({ children, ...props }: { props: any; children: ReactNode }) => {

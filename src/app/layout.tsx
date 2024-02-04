@@ -1,4 +1,5 @@
-// import "./globals.css";
+import DashboardContentWrapper from "@/components/layout/dashboard-content-wrapper/DashboardContentWrapper";
+import "../style/global.css";
 import ThemeProviderWrapper from "@/providers/theme-provider/ThemeProvider";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Viewport } from "next";
@@ -15,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <ThemeProviderWrapper>
         <body>
-          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+          <AppRouterCacheProvider>
+            <DashboardContentWrapper>{children}</DashboardContentWrapper>
+          </AppRouterCacheProvider>
         </body>
       </ThemeProviderWrapper>
     </html>

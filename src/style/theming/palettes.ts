@@ -7,6 +7,10 @@ const lightPalette: PaletteOptions = {
   secondary: {
     main: '#f4511e',
   },
+  background: {
+    paper: '#ffffff',
+    default: '#F4F5FA'
+  }
 }
 const darkPalette: PaletteOptions = {
   mode: 'dark',
